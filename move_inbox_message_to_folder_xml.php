@@ -7,7 +7,7 @@ $data = array(
     'FolderID' => 47
 );
 
-$curl = curl_init('https://app.eztexting.com/incoming-messages/?format=xml&_method=DELETE');
+$curl = curl_init('https://app.eztexting.com/incoming-messages/?format=xml&_method=move-to-folder');
 curl_setopt($curl, CURLOPT_POST, 1);
 curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
