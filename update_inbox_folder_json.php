@@ -13,20 +13,22 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 $response = curl_exec($curl);
 curl_close($curl);
 
-$json = json_decode($response);
-$json = $json->Response;
+if (!empty($response)) {
+    $json = json_decode($response);
+    $json = $json->Response;
 
-if ('Failure' == $json->Status) {
-    $errors = array();
-    if (!empty($json->Errors)) {
-        $errors = $json->Errors;
+    if ('Failure' == $json->Status) {
+        $errors = array();
+        if (!empty($json->Errors)) {
+            $errors = $json->Errors;
+        }
+
+        echo 'Status: ' . $json->Status . "\n" .
+            'Errors: ' . implode(', ', $errors) . "\n";
     }
-
-    echo 'Status: ' . $json->Status . "\n" .
-        'Errors: ' . implode(', ', $errors) . "\n";
 }
 else {
-    echo 'Status: ' . $json->Status . "\n";
+    echo 'Status: Success' . "\n";
 }
 
 ?>

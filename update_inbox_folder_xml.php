@@ -1,9 +1,9 @@
 <?php
 
 $data = array(
-    'User' => 'winnie',
+    'User'     => 'winnie',
     'Password' => 'the-pooh',
-    'Name' => 'Customers'
+    'Name'     => 'Customers'
 );
 
 $curl = curl_init('https://app.eztexting.com/messages-folders/123?format=xml');
@@ -13,18 +13,21 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 $response = curl_exec($curl);
 curl_close($curl);
 
-$xml = new SimpleXMLElement($response);
-if ('Failure' == $xml->Status) {
-    $errors = array();
-    foreach ($xml->Errors->children() as $error) {
-        $errors[] = (string)$error;
-    }
+if (!empty($response)) {
+    $xml = new SimpleXMLElement($response);
 
-    echo 'Status: ' . $xml->Status . "\n" .
-        'Errors: ' . implode(', ', $errors) . "\n";
+    if ('Failure' == $xml->Status) {
+        $errors = array();
+        foreach ($xml->Errors->children() as $error) {
+            $errors[] = (string)$error;
+        }
+
+        echo 'Status: ' . $xml->Status . "\n" .
+            'Errors: ' . implode(', ', $errors) . "\n";
+    }
 }
 else {
-    echo 'Status: ' . $xml->Status . "\n";
+    echo 'Status: Success' . "\n";
 }
 
 ?>
