@@ -1,12 +1,13 @@
 <?php
 
 $data = array(
-    'User' => 'winnie',
-    'Password' => 'the-pooh',
-    'sortBy' => 'PhoneNumber',
-    'sortDir' => 'asc',
-    'itemsPerPage' => '10',
-    'page' => '3',
+    'User'          => 'winnie',
+    'Password'      => 'the-pooh',
+    'Search'        => 2123456785,
+    'sortBy'        => 'PhoneNumber',
+    'sortDir'       => 'asc',
+    'itemsPerPage'  => '10',
+    'page'          => '3',
 );
 
 $curl = curl_init('https://app.eztexting.com/incoming-messages?format=xml&' . http_build_query($data));

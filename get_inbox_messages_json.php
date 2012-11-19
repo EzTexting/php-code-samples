@@ -3,6 +3,7 @@
 $data = array(
     'User'          => 'winnie',
     'Password'      => 'the-pooh',
+    'Search'        => 2123456785,
     'sortBy'        => 'PhoneNumber',
     'sortDir'       => 'asc',
     'itemsPerPage'  => '10',
